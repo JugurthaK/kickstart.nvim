@@ -459,6 +459,47 @@ require('lazy').setup({
   },
   { 'Bilal2453/luvit-meta', lazy = true },
   {
+    'frankroeder/parrot.nvim',
+    dependencies = { 'ibhagwan/fzf-lua', 'nvim-lua/plenary.nvim' },
+    opts = {
+      providers = {
+        openai = {
+          api_key = os.getenv 'OPENAI_API_KEY',
+        },
+      },
+    },
+    keys = {
+      { '<leader>Pc', '<cmd>PrtChatNew<cr>', mode = { 'n', 'i' }, desc = 'New Chat' },
+      { '<leader>Pc', ":<C-u>'<,'>PrtChatNew<cr>", mode = { 'v' }, desc = 'Visual Chat New' },
+      { '<leader>Pt', '<cmd>PrtChatToggle<cr>', mode = { 'n', 'i' }, desc = 'Toggle Popup Chat' },
+      { '<leader>Pf', '<cmd>PrtChatFinder<cr>', mode = { 'n', 'i' }, desc = 'Chat Finder' },
+      { '<leader>Pr', '<cmd>PrtRewrite<cr>', mode = { 'n', 'i' }, desc = 'Inline Rewrite' },
+      { '<leader>Pr', ":<C-u>'<,'>PrtRewrite<cr>", mode = { 'v' }, desc = 'Visual Rewrite' },
+      {
+        '<leader>Pj',
+        '<cmd>PrtRetry<cr>',
+        mode = { 'n' },
+        desc = 'Retry rewrite/append/prepend command',
+      },
+      { '<leader>Pa', '<cmd>PrtAppend<cr>', mode = { 'n', 'i' }, desc = 'Append' },
+      { '<leader>Pa', ":<C-u>'<,'>PrtAppend<cr>", mode = { 'v' }, desc = 'Visual Append' },
+      { '<leader>Po', '<cmd>PrtPrepend<cr>', mode = { 'n', 'i' }, desc = 'Prepend' },
+      { '<leader>Po', ":<C-u>'<,'>PrtPrepend<cr>", mode = { 'v' }, desc = 'Visual Prepend' },
+      { '<leader>Pe', ":<C-u>'<,'>PrtEnew<cr>", mode = { 'v' }, desc = 'Visual Enew' },
+      { '<leader>Ps', '<cmd>PrtStop<cr>', mode = { 'n', 'i', 'v', 'x' }, desc = 'Stop' },
+      {
+        '<leader>Pi',
+        ":<C-u>'<,'>PrtComplete<cr>",
+        mode = { 'n', 'i', 'v', 'x' },
+        desc = 'Complete visual selection',
+      },
+      { '<leader>Px', '<cmd>PrtContext<cr>', mode = { 'n' }, desc = 'Open context file' },
+      { '<leader>Pn', '<cmd>PrtModel<cr>', mode = { 'n' }, desc = 'Select model' },
+      { '<leader>Pp', '<cmd>PrtProvider<cr>', mode = { 'n' }, desc = 'Select provider' },
+      { '<leader>Pq', '<cmd>PrtAsk<cr>', mode = { 'n' }, desc = 'Ask a question' },
+    },
+  },
+  {
     -- Main LSP Configuration
     'neovim/nvim-lspconfig',
     dependencies = {
